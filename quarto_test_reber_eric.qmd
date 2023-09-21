@@ -8,7 +8,8 @@ editor: visual
 
 First, we create our data by sampling 100 items from the log normal distribution, with $\mu=5$ and $\sigma=0.5$ as shown below.
 
-```{r, results='hide'}
+```{r}
+#| warning: false
 library(tidyverse)
 require(gridExtra)
 log_norm_dist <- rlnorm(100, 5, 0.5)
