@@ -1,0 +1,34 @@
+---
+title: "Week 1 Exercise"
+format: html
+editor: visual
+---
+
+## Creating data
+
+First, we create our data by sampling 100 items from the log normal distribution, with $\mu=5$ and $\sigma=0.5$ as shown below.
+
+```{r, results='hide'}
+library(tidyverse)
+require(gridExtra)
+log_norm_dist <- rlnorm(100, 5, 0.5)
+```
+
+## Plotting ggplot2 histograms
+
+We proceed to plot histograms of our data using the ggplot2 package. We plot two histograms of our data, one with a linear y axis and one with a logarithmic y axis.
+
+```{r}
+lin_hist <- ggplot(as.data.frame(log_norm_dist), aes(x=log_norm_dist)) + geom_histogram(binwidth=20) + ggtitle("Linear scale")
+log_hist <- ggplot(as.data.frame(log_norm_dist), aes(x=log_norm_dist)) + geom_histogram(binwidth = 20) + ggtitle("Logarithmic scale") + scale_y_log10()
+grid.arrange(lin_hist, log_hist, ncol=2)
+```
+
+## Plotting violin plot
+
+Finally we plot a violin plot of our data
+
+```{r}
+violin_plot <- ggplot(as.data.frame(log_norm_dist), aes(x=log_norm_dist, y=log_norm_dist)) + geom_violin()
+violin_plot
+```
